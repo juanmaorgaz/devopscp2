@@ -1,6 +1,5 @@
-# CORRECTION PRACTICE
+# SECRETS
 
-terraform/correccion-vars.tf
 terraform/credentials.tf
 
 # VISUAL STUDIO CODE
