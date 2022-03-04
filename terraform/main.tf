@@ -14,7 +14,7 @@ terraform {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
 
 resource "azurerm_resource_group" "rg" {
-    name     =  "kubernetes_rg"
+    name     =  "CP2"
     location = var.location
 
     tags = {
@@ -27,7 +27,7 @@ resource "azurerm_resource_group" "rg" {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account
 
 resource "azurerm_storage_account" "stAccount" {
-    name                     = "staccountcp2" 
+    name                     = var.storage_account 
     resource_group_name      = azurerm_resource_group.rg.name
     location                 = azurerm_resource_group.rg.location
     account_tier             = "Standard"
@@ -42,22 +42,22 @@ resource "azurerm_storage_account" "stAccount" {
 # Create Network
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
 
-resource "azurerm_virtual_network" "myNet" {
-    name                = "kubernetesnet"
+resource "azurerm_virtual_network" "kubernetesnet" {
+    name                = "CP2net"
     address_space       = ["10.0.0.0/16"]
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
 
     tags = {
-        environment = "CP2"
+        environment = "UNIR CP2"
     }
 }
 
 # Create Subnet
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
 
-resource "azurerm_subnet" "mySubnet" {
-    name                   = "terraformsubnet"
+resource "azurerm_subnet" "kubernetessubnet" {
+    name                   = "CP2subnet"
     resource_group_name    = azurerm_resource_group.rg.name
     virtual_network_name   = azurerm_virtual_network.myNet.name
     address_prefixes       = ["10.0.1.0/24"]
