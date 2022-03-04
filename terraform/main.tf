@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "rg" {
     location = var.location
 
     tags = {
-        environment = "CP2"
+        environment = "UNIR CP2"
     }
 
 }
@@ -32,7 +32,7 @@ resource "azurerm_storage_account" "stAccount" {
     account_replication_type = "LRS"
 
     tags = {
-        environment = "CP2"
+        environment = "UNIR CP2"
     }
 
 }
