@@ -59,7 +59,7 @@ resource "azurerm_virtual_network" "kubernetesnet" {
 resource "azurerm_subnet" "kubernetessubnet" {
     name                   = "CP2subnet"
     resource_group_name    = azurerm_resource_group.rg.name
-    virtual_network_name   = azurerm_virtual_network.kubernetessubnet.name
+    virtual_network_name   = azurerm_virtual_network.kubernetesnet.name
     address_prefixes       = ["10.0.1.0/24"]
 
 }
