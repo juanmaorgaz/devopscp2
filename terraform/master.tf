@@ -2,12 +2,12 @@
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
 
 resource "azurerm_network_interface" "masterNic" {
-  name                = "vmnic1"  
+  name                = "master_nic1"  
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
     ip_configuration {
-    name                           = "masteripconfiguration"
+    name                           = "master_ipconfiguration"
     subnet_id                      = azurerm_subnet.kubernetessubnet.id 
     private_ip_address_allocation  = "Static"
     private_ip_address             = "10.0.1.10"
@@ -42,7 +42,7 @@ resource "azurerm_public_ip" "masterPublicIp" {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group
 
 resource "azurerm_network_security_group" "masterSecGroup" {
-    name                = "sshtraffic"
+    name                = "master_sshtraffic"
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
 
@@ -77,7 +77,7 @@ resource "azurerm_network_interface_security_group_association" "masterSecGroupA
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
 
 resource "azurerm_linux_virtual_machine" "masterVM" {
-    name                = "Master-vm"
+    name                = "master-vm"
     resource_group_name = azurerm_resource_group.rg.name
     location            = azurerm_resource_group.rg.location
     size                = "Standard_D2_v2" # 7 GB, 2 CPU
