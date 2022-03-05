@@ -1,21 +1,22 @@
 # Create NIC
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
 
-resource "azurerm_network_interface" "myNic1" {
+resource "azurerm_network_interface" "masterNic" {
   name                = "vmnic1"  
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
     ip_configuration {
-    name                           = "myipconfiguration1"
-    subnet_id                      = azurerm_subnet.mySubnet.id 
+    name                           = "masteripconfiguration"
+    subnet_id                      = azurerm_subnet.kubernetessubnet.id 
     private_ip_address_allocation  = "Static"
     private_ip_address             = "10.0.1.10"
-    public_ip_address_id           = azurerm_public_ip.myPublicIp1.id
+    public_ip_address_id           = azurerm_public_ip.masterPublicIp.id
   }
 
     tags = {
-        environment = "CP2"
+        environment = "UNIR CP2"
+        node        = "MASTER"
     }
 
 }
@@ -23,15 +24,16 @@ resource "azurerm_network_interface" "myNic1" {
 # Create Public IP
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
 
-resource "azurerm_public_ip" "myPublicIp1" {
-  name                = "vmip1"
+resource "azurerm_public_ip" "masterPublicIp" {
+  name                = "master_Public_Ip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
   sku                 = "Basic"
 
     tags = {
-        environment = "CP2"
+        environment = "UNIR CP2"
+        node        = "MASTER"
     }
 
 }
@@ -39,7 +41,7 @@ resource "azurerm_public_ip" "myPublicIp1" {
 # Create Security Group
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group
 
-resource "azurerm_network_security_group" "mySecGroup" {
+resource "azurerm_network_security_group" "masterSecGroup" {
     name                = "sshtraffic"
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
@@ -57,34 +59,35 @@ resource "azurerm_network_security_group" "mySecGroup" {
     }
 
     tags = {
-        environment = "CP2"
+        environment = "UNIR CP2"
+        node        = "MASTER"
     }
 }
 
 # Vinculate security group to network interface
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
 
-resource "azurerm_network_interface_security_group_association" "mySecGroupAssociation1" {
-    network_interface_id      = azurerm_network_interface.myNic1.id
-    network_security_group_id = azurerm_network_security_group.mySecGroup.id
+resource "azurerm_network_interface_security_group_association" "masterSecGroupAssociation" {
+    network_interface_id      = azurerm_network_interface.masterNic.id
+    network_security_group_id = azurerm_network_security_group.masterSecGroup.id
 
 }
 
 # Create Virtual Machine
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
 
-resource "azurerm_linux_virtual_machine" "myVM1" {
-    name                = "my-first-azure-vm"
+resource "azurerm_linux_virtual_machine" "masterVM" {
+    name                = "Master-vm"
     resource_group_name = azurerm_resource_group.rg.name
     location            = azurerm_resource_group.rg.location
-    size                = "Standard_D1_v2" # 3.5 GB, 1 CPU
-    admin_username      = "adminUsername"
-    network_interface_ids = [ azurerm_network_interface.myNic1.id ]
+    size                = "Standard_D2_v2" # 7 GB, 2 CPU
+    admin_username      = var.ssh_user
+    network_interface_ids = [ azurerm_network_interface.masterNic.id ]
     disable_password_authentication = true
 
     admin_ssh_key {
-        username   = "adminUsername"
-        public_key = file("~/.ssh/id_rsa.pub")
+        username   = var.ssh_user
+        public_key = file(var.public_key_path)
     }
 
     os_disk {
@@ -110,7 +113,8 @@ resource "azurerm_linux_virtual_machine" "myVM1" {
     }
 
     tags = {
-        environment = "CP2"
+        environment = "UNIR CP2"
+        node        = "MASTER"
     }
 
 }
