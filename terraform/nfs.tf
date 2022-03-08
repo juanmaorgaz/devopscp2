@@ -80,7 +80,7 @@ resource "azurerm_linux_virtual_machine" "nfsVM" {
     name                = "NFS-vm"
     resource_group_name = azurerm_resource_group.rg.name
     location            = azurerm_resource_group.rg.location
-    size                = "Standard_D2_v2" # 7 GB, 2 CPU
+    size                = "Standard_D1_v2" # 3.5 GB, 1 CPU
     admin_username      = var.ssh_user
     network_interface_ids = [ azurerm_network_interface.nfsNic.id ]
     disable_password_authentication = true
