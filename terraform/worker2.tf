@@ -10,7 +10,7 @@ resource "azurerm_network_interface" "worker2Nic" {
     name                           = "worker2ipconfiguration"
     subnet_id                      = azurerm_subnet.kubernetessubnet.id 
     private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.10"
+    private_ip_address             = "10.0.1.12"
     public_ip_address_id           = azurerm_public_ip.worker2PublicIp.id
   }
 

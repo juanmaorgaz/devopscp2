@@ -10,7 +10,7 @@ resource "azurerm_network_interface" "nfsNic" {
     name                           = "nfs_ipconfiguration"
     subnet_id                      = azurerm_subnet.kubernetessubnet.id 
     private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.10"
+    private_ip_address             = "10.0.1.13"
     public_ip_address_id           = azurerm_public_ip.nfsPublicIp.id
   }
 
