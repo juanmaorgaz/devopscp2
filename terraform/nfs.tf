@@ -58,29 +58,29 @@ resource "azurerm_network_security_group" "nfsSecGroup" {
         destination_address_prefix = "*"
     }
 
-    security_rule {
-        name                       = "SSH"
-        priority                   = 1002
-        direction                  = "Inbound"
-        access                     = "Allow"
-        protocol                   = "Tcp"
-        source_port_range          = "*"
-        destination_port_range     = "22"
-        source_address_prefix      = "10.0.1.0/24"
-        destination_address_prefix = "*"
-    }
+    # security_rule {
+    #     name                       = "IN"
+    #     priority                   = 1002
+    #     direction                  = "Inbound"
+    #     access                     = "Allow"
+    #     protocol                   = "Tcp"
+    #     source_port_range          = "*"
+    #     destination_port_range     = "*"
+    #     source_address_prefix      = "10.0.1.0/24"
+    #     destination_address_prefix = "*"
+    # }
 
-    security_rule {
-        name                       = "SSH"
-        priority                   = 1003
-        direction                  = "outbound"
-        access                     = "Allow"
-        protocol                   = "Tcp"
-        source_port_range          = "*"
-        destination_port_range     = "22"
-        source_address_prefix      = "10.0.1.0/24"
-        destination_address_prefix = "*"
-    }
+    # security_rule {
+    #     name                       = "OUT"
+    #     priority                   = 1003
+    #     direction                  = "outbound"
+    #     access                     = "Allow"
+    #     protocol                   = "Tcp"
+    #     source_port_range          = "*"
+    #     destination_port_range     = "*"
+    #     source_address_prefix      = "10.0.1.0/24"
+    #     destination_address_prefix = "*"
+    # }
 
     tags = {
         environment = "UNIR CP2"
