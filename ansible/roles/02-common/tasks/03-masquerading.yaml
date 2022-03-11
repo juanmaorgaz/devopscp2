@@ -13,5 +13,8 @@
     zone: public
     state: enabled
 
-- name: Reinicio firewall
-  command: firewall-cmd --reload
+- name: Reiniciando Firewall 
+  systemd:
+    name: firewalld
+    state: restarted
+  become: yes

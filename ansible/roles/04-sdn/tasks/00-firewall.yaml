@@ -1,10 +1,21 @@
 ---
 
-- name: 8285/udp
-  command: firewall-cmd --permanent --add-port=8285/udp
+- name: Habilitamos puertos usados por la SDN 8285 UDP
+  firewalld:
+    port: 8285/udp
+    permanent: true
+    state: enabled
+  become: yes
+  
+- name: Habilitamos puertos usados por la SDN 8472 UDP
+  firewalld:
+    port: 8472/udp
+    permanent: true
+    state: enabled
+  become: yes
 
-- name: 8472/udp
-  command: firewall-cmd --permanent --add-port=8472/udp
-
-- name: Reinicio firewall
-  command: firewall-cmd --reload
+- name: Reiniciando Firewall 
+  systemd:
+    name: firewalld
+    state: restarted
+  become: yes

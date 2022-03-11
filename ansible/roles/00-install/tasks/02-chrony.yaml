@@ -5,11 +5,13 @@
     name: "chrony"
     state: present
 
-- name: Habilita chrony
-  command: /usr/bin/systemctl enable chronyd
-
-- name: Inicia chrony
-  command: /usr/bin/systemctl start chronyd
+- name: Iniciar servicio chrony
+  systemd:
+    name: chronyd
+    state: started
+    enabled: yes
+    masked: no
+  become: yes
 
 - name: NTP a true 
   command: /usr/bin/timedatectl set-ntp true

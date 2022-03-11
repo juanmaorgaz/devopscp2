@@ -1,5 +1,5 @@
 ---
 
-- name: Reiniciando el server
+- name: Reiniciando el master y workers
   reboot:
   become: yes

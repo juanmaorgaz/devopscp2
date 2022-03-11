@@ -15,5 +15,8 @@
     - 10252/tcp # kube-controller-manager
     - 10255/tcp # Statistics
 
-- name: reboot firewall
-  command: firewall-cmd --reload
+- name: Reiniciando Firewall 
+  systemd:
+    name: firewalld
+    state: restarted
+  become: yes

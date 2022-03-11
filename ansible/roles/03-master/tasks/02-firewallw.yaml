@@ -1,10 +1,21 @@
 ---
 
 - name: Permitir acceso desde worker1
-  command: firewall-cmd --permanent --add-rich-rule 'rule family=ipv4 source address=10.0.1.11/32 accept'
+  firewalld:
+    rich_rule: "rule family=ipv4 source address=10.0.1.11/32 accept"
+    permanent: true
+    state: enabled
+  become: yes
 
-- name: Permitir acceso desde worker2
-  command: firewall-cmd --permanent --add-rich-rule 'rule family=ipv4 source address=10.0.1.12/32 accept'
+- name: Permitir acceso desde worker1
+  firewalld:
+    rich_rule: "rule family=ipv4 source address=10.0.1.12/32 accept"
+    permanent: true
+    state: enabled
+  become: yes
 
-- name: Reinicio de firewall
-  command: firewall-cmd --reload
+- name: Reiniciando Firewall 
+  systemd:
+    name: firewalld
+    state: restarted
+  become: yes
