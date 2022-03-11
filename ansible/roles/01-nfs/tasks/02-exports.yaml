@@ -2,5 +2,5 @@
 
 - name: Agregamos masters a /etc/exports
   copy: 
-   src: exports
-   dest: /etc/exports
+    src: exports
+    dest: /etc/exports

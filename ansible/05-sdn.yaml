@@ -1,0 +1,7 @@
+---
+
+- name: Instalando la SDN
+  hosts: master
+  become: true
+  roles:
+    - 04-sdn

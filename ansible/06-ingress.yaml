@@ -1,1 +1,7 @@
 ---
+
+- name: Desplegando ingress controller
+  hosts: master
+  become: true
+  roles:
+    - 05-ingress

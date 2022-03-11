@@ -1,12 +1,7 @@
 ---
 
 - name: Instalamos nfs-utils net-tools nfs4-acl-tools wget
-    dnf:
-    name: "{{ item }}"
+  dnf:
+    name: ['nfs-utils', 'net-tools']
     state: present
   become: yes
-  with_items: 
-    - nfs-utils
-    - net-tools
-    - nfs4-acl-tools
-    - wget

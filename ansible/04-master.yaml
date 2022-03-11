@@ -1,1 +1,7 @@
 ---
+
+- name: Configurando kubernetes en el nodo master
+  hosts: master
+  become: true
+  roles:
+    - 03-master

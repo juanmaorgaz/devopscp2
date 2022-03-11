@@ -1,1 +1,7 @@
 ---
+
+- name: Instalacion del servidor NFS
+  hosts: nfs
+  become: true
+  roles:
+    - 01-nfs

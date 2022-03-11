@@ -11,8 +11,8 @@
 # Ejecutar configuraciones correspondientes a los nodos Master
 - import_playbook: 04-master.yaml
 # Ejecutar configuraciones de la SDN
-- import_playbook: 05-sdm.yaml
+- import_playbook: 05-sdn.yaml
 # Ejecutar configuraciones de ingress
 - import_playbook: 06-ingress.yaml
-# Ejecutar configuraciones correspondientes a los nodos Worker
+# # Ejecutar configuraciones correspondientes a los nodos Worker
 - import_playbook: 07-worker.yaml

@@ -1,4 +1,10 @@
 ---
 
+- name: "Copying required files"
+  become: yes
+  shell: |
+    cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+    chown $(id -u):$(id -g) $HOME/.kube/config
+
 - name: Descarga de projectcalico.org
   command: kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml

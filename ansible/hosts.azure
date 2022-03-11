@@ -1,11 +1,11 @@
 [all:vars]
-ansible_user=ansible
+ansible_user=adminUsername
 
 [master]
-10.0.1.10
+kubemaster.juanmaorgaz.es ansible_host=20.224.134.127
 
 [workers]
-10.0.1.11
+kubenode1.juanmaorgaz.es ansible_host=20.224.134.8
 
 [nfs]
-10.0.1.13
+nfs.juanmaorgaz.es ansible_host=20.126.59.21

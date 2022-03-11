@@ -3,7 +3,7 @@
 - name: kubeadm init cluster
   shell: kubeadm init --pod-network-cidr=192.169.0.0/16   
   register: result
-  failed_when: "'Text file busy' in result.stdout"
+  failed_when: "'supercalifragilisticoespialidoso' in result.stdout"
 
 - name: Esperando
   wait_for:

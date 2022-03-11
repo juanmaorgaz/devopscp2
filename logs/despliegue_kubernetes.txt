@@ -1,0 +1,370 @@
+ubuntu@PF17J61Q:/mnt/c/datos/UNIR/devopscp2/ansible$ ansible-playbook -i hosts.azure 00-despliegue-kubernetes.yaml
+
+PLAY [Tareas previas de configuracion] *************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [00-install : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/00-install/tasks/00-update.yaml for nfs.juanmaorgaz.es, kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [00-install : Actualiza paquetes del Sistema] *************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+ok: [nfs.juanmaorgaz.es]
+
+TASK [00-install : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/00-install/tasks/01-timezone.yaml for nfs.juanmaorgaz.es, kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [00-install : Configurando timezone Europe/Madrid] ********************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [00-install : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/00-install/tasks/02-chrony.yaml for nfs.juanmaorgaz.es, kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [00-install : Instalar chrony] ****************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [nfs.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [00-install : Habilita chrony] ****************************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+changed: [kubemaster.juanmaorgaz.es]
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [00-install : Inicia chrony] ******************************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+changed: [kubemaster.juanmaorgaz.es]
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [00-install : NTP a true] *********************************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+changed: [kubemaster.juanmaorgaz.es]
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [00-install : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/00-install/tasks/03-selinux.yaml for nfs.juanmaorgaz.es, kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [00-install : Deshabilitamos SELinux] *********************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+ok: [nfs.juanmaorgaz.es]
+
+TASK [00-install : Reiniciando el server] **********************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+changed: [kubemaster.juanmaorgaz.es]
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [00-install : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/00-install/tasks/04-packages.yaml for nfs.juanmaorgaz.es, kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [00-install : Instalamos nfs-utils nfs4-acl-tools wget] ***************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [nfs.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [00-install : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/00-install/tasks/05-etchosts.yaml for nfs.juanmaorgaz.es, kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [00-install : Configuramos el hostname] *******************************************************************************************************************************
+ok: [kubenode1.juanmaorgaz.es]
+ok: [kubemaster.juanmaorgaz.es]
+ok: [nfs.juanmaorgaz.es]
+
+TASK [00-install : Agregar a /etc/hosts] ***********************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es] => (item=10.0.1.10 kubemaster kubemaster.juanmaorgaz.es)
+ok: [nfs.juanmaorgaz.es] => (item=10.0.1.10 kubemaster kubemaster.juanmaorgaz.es)
+ok: [kubenode1.juanmaorgaz.es] => (item=10.0.1.10 kubemaster kubemaster.juanmaorgaz.es)
+ok: [kubemaster.juanmaorgaz.es] => (item=10.0.1.11 kubenode1 kubenode1.juanmaorgaz.es)
+ok: [nfs.juanmaorgaz.es] => (item=10.0.1.11 kubenode1 kubenode1.juanmaorgaz.es)
+ok: [kubenode1.juanmaorgaz.es] => (item=10.0.1.11 kubenode1 kubenode1.juanmaorgaz.es)
+ok: [nfs.juanmaorgaz.es] => (item=10.0.1.13 nfs nfs.juanmaorgaz.es)
+ok: [kubemaster.juanmaorgaz.es] => (item=10.0.1.13 nfs nfs.juanmaorgaz.es)
+ok: [kubenode1.juanmaorgaz.es] => (item=10.0.1.13 nfs nfs.juanmaorgaz.es)
+
+PLAY [Instalacion del servidor NFS] ****************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/01-nfs/tasks/00-packages.yaml for nfs.juanmaorgaz.es
+
+TASK [01-nfs : Instalamos nfs-utils net-tools nfs4-acl-tools wget] *********************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/01-nfs/tasks/01-directory.yaml for nfs.juanmaorgaz.es
+
+TASK [01-nfs : Creamos el directorio NFS] **********************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/01-nfs/tasks/02-exports.yaml for nfs.juanmaorgaz.es
+
+TASK [01-nfs : Agregamos masters a /etc/exports] ***************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/01-nfs/tasks/03-nsfserver.yaml for nfs.juanmaorgaz.es
+
+TASK [01-nfs : Inicia nfs-server] ******************************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/01-nfs/tasks/04-exportfs.yaml for nfs.juanmaorgaz.es
+
+TASK [01-nfs : exportfs -r] ************************************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : exportfs -s] ************************************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/01-nfs/tasks/05-firewall.yaml for nfs.juanmaorgaz.es
+
+TASK [01-nfs : Habilitar Firewalld] ****************************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+
+TASK [01-nfs : Abrir los puertos del firewall] *****************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es] => (item=nfs)
+ok: [nfs.juanmaorgaz.es] => (item=rpc-bind)
+ok: [nfs.juanmaorgaz.es] => (item=mountd)
+
+TASK [01-nfs : Reiniciando el servicio Firewalld] **************************************************************************************************************************
+changed: [nfs.juanmaorgaz.es]
+
+PLAY [Tareas comunes a realizar en el nodo master y los workers] ***********************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/02-common/tasks/00-swap.yaml for kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [02-common : Deshabilitar SWAP] ***************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Deshabilitar SWAP en fstab] ******************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/02-common/tasks/01-firewall.yaml for kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [02-common : Habilitar firewall] **************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/02-common/tasks/02-reinio.yaml for kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [02-common : Reiniciando el server] ***********************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/02-common/tasks/03-masquerading.yaml for kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [02-common : Habilitamos modprobe br_netfilter] ***********************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Habilitamos el enmascaramiento] **************************************************************************************************************************
+[WARNING]: The value True (type bool) in a string field was converted to 'True' (type string). If this does not look like what you expect, quote the entire value to ensure
+it does not change.
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Reinicio firewall] ***************************************************************************************************************************************
+changed: [kubenode1.juanmaorgaz.es]
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [02-common : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/02-common/tasks/04-traffic.yaml for kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [02-common : Creando el archivo k8s.conf] *****************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Recargamos sysctl] ***************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/02-common/tasks/05-docker.yaml for kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [02-common : Agregamos repositorio Docker] ****************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Instalar Docker] *****************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Iniciar servicio de Docker] ******************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Copiar daemon.json de Docker] ****************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Reiniciar servicio de Docker] ****************************************************************************************************************************
+changed: [kubenode1.juanmaorgaz.es]
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [02-common : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/02-common/tasks/06-kubernetes.yaml for kubemaster.juanmaorgaz.es, kubenode1.juanmaorgaz.es
+
+TASK [02-common : Configurar repositorio de Kubernetes] ********************************************************************************************************************
+ok: [kubenode1.juanmaorgaz.es]
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [02-common : Instalar Kubernetes] *************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [02-common : Iniciar servicio de Kubernetes] **************************************************************************************************************************
+ok: [kubenode1.juanmaorgaz.es]
+ok: [kubemaster.juanmaorgaz.es]
+
+PLAY [Configurando kubernetes en el nodo master] ***************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/03-master/tasks/00-firewall.yaml for kubemaster.juanmaorgaz.es
+
+TASK [03-master : Configurar firewall para acceder a los servicios de kubernetes] ******************************************************************************************
+ok: [kubemaster.juanmaorgaz.es] => (item=6443/tcp)
+ok: [kubemaster.juanmaorgaz.es] => (item=2379/tcp)
+ok: [kubemaster.juanmaorgaz.es] => (item=2380/tcp)
+ok: [kubemaster.juanmaorgaz.es] => (item=10250/tcp)
+ok: [kubemaster.juanmaorgaz.es] => (item=10251/tcp)
+ok: [kubemaster.juanmaorgaz.es] => (item=10252/tcp)
+ok: [kubemaster.juanmaorgaz.es] => (item=10255/tcp)
+
+TASK [03-master : reboot firewall] *****************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/03-master/tasks/01-kubeadm.yaml for kubemaster.juanmaorgaz.es
+
+TASK [03-master : Configurar kubeadm] **************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/03-master/tasks/02-firewallw.yaml for kubemaster.juanmaorgaz.es
+
+TASK [03-master : Permitir acceso desde worker1] ***************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : Permitir acceso desde worker2] ***************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : Reinicio de firewall] ************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/03-master/tasks/03-init.yaml for kubemaster.juanmaorgaz.es
+
+TASK [03-master : kubeadm init cluster] ************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : Esperando] ***********************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : Obtener token] *******************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [03-master : Token] ***************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es] => {
+    "kubernetes_join_command.stdout": "kubeadm join 10.0.1.10:6443 --token nm97l1.k1i466w98relf7av --discovery-token-ca-cert-hash sha256:1587ec96cac708afb95a01634f98e74738d5db054fa50f358c3da3466abcc7e5 "
+}
+
+TASK [03-master : Copiarlo] ************************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es -> localhost]
+
+TASK [03-master : Crear .kube] *********************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+PLAY [Instalando la SDN] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [04-sdn : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/04-sdn/tasks/00-firewall.yaml for kubemaster.juanmaorgaz.es
+
+TASK [04-sdn : 8285/udp] ***************************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [04-sdn : 8472/udp] ***************************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [04-sdn : Reinicio firewall] ******************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [04-sdn : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/04-sdn/tasks/01-calico.yaml for kubemaster.juanmaorgaz.es
+
+TASK [04-sdn : Copying required files] *************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [04-sdn : Descarga de projectcalico.org] ******************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+PLAY [Desplegando ingress controller] **************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [05-ingress : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/05-ingress/tasks/00-haproxy.yaml for kubemaster.juanmaorgaz.es
+
+TASK [05-ingress : haproxy-controller] *************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [05-ingress : include_tasks] ******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/05-ingress/tasks/01-apply.yaml for kubemaster.juanmaorgaz.es
+
+TASK [05-ingress : running installation] ***********************************************************************************************************************************
+skipping: [kubemaster.juanmaorgaz.es]
+
+PLAY [Configurando los workers] ********************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [06-worker : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/06-worker/tasks/00-firewall.yaml for kubenode1.juanmaorgaz.es
+
+TASK [06-worker : 10250 tcp y 30000-32767 tcp] *****************************************************************************************************************************
+changed: [kubenode1.juanmaorgaz.es] => (item=10250/tcp)
+changed: [kubenode1.juanmaorgaz.es] => (item=30000-32767/tcp)
+
+TASK [06-worker : Reinicio firewall] ***************************************************************************************************************************************
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [06-worker : include_tasks] *******************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/06-worker/tasks/01-unirse.yaml for kubenode1.juanmaorgaz.es
+
+TASK [06-worker : Copiar token] ********************************************************************************************************************************************
+changed: [kubenode1.juanmaorgaz.es]
+
+TASK [06-worker : Unir workers] ********************************************************************************************************************************************
+changed: [kubenode1.juanmaorgaz.es]
+
+PLAY RECAP *****************************************************************************************************************************************************************
+kubemaster.juanmaorgaz.es  : ok=4    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+kubenode1.juanmaorgaz.es   : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+

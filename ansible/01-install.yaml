@@ -1,1 +1,7 @@
 ---
+
+- name: Tareas previas de configuracion
+  hosts: all
+  become: true
+  roles:
+    - 00-install

@@ -1,1 +1,7 @@
 ---
+
+- name: Tareas comunes a realizar en el nodo master y los workers
+  hosts: master, workers
+  become: true
+  roles:
+    - 02-common

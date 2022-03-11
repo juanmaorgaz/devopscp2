@@ -8,13 +8,9 @@
 
 - name: Instalar Docker
   dnf:
-    name: "{{ item }}"
+    name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
     state: present
   become: yes
-  with_items: 
-    - docker-ce
-    - docker-ce-cli 
-    - containerd.io
 
 - name: Iniciar servicio de Docker
   systemd:

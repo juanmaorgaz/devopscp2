@@ -1,6 +1,12 @@
 ---
 
-- name: abrir los puertos del firewall
+- name: Habilitar Firewalld 
+  systemd:
+    name: firewalld
+    state: started
+  become: yes
+
+- name: Abrir los puertos del firewall
   firewalld:
     service: "{{ item }}"
     permanent: yes
@@ -11,5 +17,8 @@
     - rpc-bind
     - mountd
 
-- name: reboot firewall
-  command: firewall-cmd --reload
+- name: Reiniciando el servicio Firewalld 
+  systemd:
+    name: firewalld
+    state: reloaded
+  become: yes

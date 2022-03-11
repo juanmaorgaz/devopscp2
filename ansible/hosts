@@ -1,12 +1,11 @@
-[all:vars]
-ansible_user=adminUsername
+[all:vars] 
+ansible_user=ansible 
 
-[master]
-20.105.183.93
+[master] 
+10.0.1.10 
 
-[workers]
-20.105.183.93
+[workers] 
+10.0.1.11 
 
-
-[nfs]
-20.105.183.93
+[nfs] 
+10.0.1.13 

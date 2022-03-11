@@ -1,0 +1,18 @@
+---
+
+- name: Configuramos el hostname
+  hostname:
+    name: "{{inventory_hostname}}"
+    use: systemd
+  become: yes
+
+- name: Agregar a /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{item}}"
+    state: present
+  become: yes
+  with_items: 
+    - '10.0.1.10 kubemaster kubemaster.juanmaorgaz.es'
+    - '10.0.1.11 kubenode1 kubenode1.juanmaorgaz.es'
+    - '10.0.1.13 nfs nfs.juanmaorgaz.es'

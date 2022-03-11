@@ -1,1 +1,7 @@
 ---
+
+- name: Configurando los workers
+  hosts: workers
+  become: true
+  roles:
+    - 06-worker

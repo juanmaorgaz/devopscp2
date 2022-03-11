@@ -14,14 +14,10 @@
 
 - name: Instalar Kubernetes
   dnf:
-    name: "{{ item }}"
+    name: ['kubelet', 'kubeadm', 'kubectl']
     state: present
     disable_excludes: Kubernetes
   become: yes
-  with_items: 
-    - kubelet
-    - kubeadm 
-    - kubectl
 
 - name: Iniciar servicio de Kubernetes
   systemd:
