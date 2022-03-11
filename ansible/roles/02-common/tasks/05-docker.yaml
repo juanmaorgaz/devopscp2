@@ -1,0 +1,35 @@
+---
+
+- name: Agregamos repositorio Docker
+  shell: dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+    warn: false
+
+- name: Instalar Docker
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items: 
+    - docker-ce
+    - docker-ce-cli 
+    - containerd.io
+
+- name: Iniciar servicio de Docker
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+    masked: no
+
+- name: Copiar daemon.json de Docker 
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    mode: '0644'
+
+- name: Reiniciar servicio de Docker
+  systemd:
+    name: docker
+    state: restarted

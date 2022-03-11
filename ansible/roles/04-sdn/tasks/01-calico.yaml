@@ -1,0 +1,4 @@
+---
+
+- name: Descarga de projectcalico.org
+  command: kubectl apply -f https://docs.projectcalico.org/manifests/canal.yaml

@@ -1,0 +1,10 @@
+---
+
+- name: Copiar token 
+  copy:
+    src: /tmp/token
+    dest: /tmp/token
+    mode: 0777
+
+- name: Unir workers
+  command: sh /tmp/token

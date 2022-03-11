@@ -1,0 +1,6 @@
+---
+
+- include_tasks: 00-firewall.yaml
+- include_tasks: 01-kubeadm.yaml
+- include_tasks: 02-firewallw.yaml
+- include_tasks: 03-init.yaml

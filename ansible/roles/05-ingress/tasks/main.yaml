@@ -1,0 +1,4 @@
+---
+
+- include_tasks: 00-haproxy.yaml
+- include_tasks: 01-apply.yaml

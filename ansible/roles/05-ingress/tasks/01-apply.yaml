@@ -1,0 +1,5 @@
+---
+
+- name: running installation
+  command: kubectl apply -f https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/v1.5/deploy/haproxy-ingress.yaml
+  when: ingress_check.stdout != "Active"

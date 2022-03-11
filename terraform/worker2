@@ -118,3 +118,13 @@ resource "azurerm_linux_virtual_machine" "worker2VM" {
     }
 
 }
+
+output "public_ip_address_worker2" {
+    description = "Public IP Master"
+    value       = data.azurerm_public_ip.vm.worker2PublicIp.ip_address
+  }
+
+  output "network_interface_worker2" {
+    description = "Private ip Worker2"
+    value       = azurerm_network_interface.worker2Nic.private_ip_address
+  }

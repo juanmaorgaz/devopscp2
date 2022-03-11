@@ -1,0 +1,5 @@
+---
+
+- name: Reiniciando el server
+  reboot:
+  become: yes

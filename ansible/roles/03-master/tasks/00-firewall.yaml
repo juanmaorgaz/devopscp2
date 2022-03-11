@@ -1,0 +1,19 @@
+---
+
+- name: Configurar firewall para acceder a los servicios de kubernetes
+  firewalld:
+    port: "{{item}}"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  with_items:
+    - 6443/tcp  # Kubernetes API Server
+    - 2379/tcp  # etcd server client API
+    - 2380/tcp  # etcd server client API
+    - 10250/tcp # Kubelet API
+    - 10251/tcp # kube-scheduler
+    - 10252/tcp # kube-controller-manager
+    - 10255/tcp # Statistics
+
+- name: reboot firewall
+  command: firewall-cmd --reload

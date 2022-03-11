@@ -1,0 +1,15 @@
+---
+
+- name: abrir los puertos del firewall
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  with_items:
+    - nfs
+    - rpc-bind
+    - mountd
+
+- name: reboot firewall
+  command: firewall-cmd --reload

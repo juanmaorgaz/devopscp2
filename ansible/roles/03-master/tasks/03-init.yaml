@@ -1,0 +1,29 @@
+---
+
+- name: kubeadm init cluster
+  shell: kubeadm init --pod-network-cidr=192.169.0.0/16   
+  register: result
+  failed_when: "'Text file busy' in result.stdout"
+
+- name: Esperando
+  wait_for:
+    timeout: 20
+
+- name: Obtener token 
+  command: kubeadm token create --print-join-command
+  register: kubernetes_join_command
+
+- name: Token
+  debug:
+    var: kubernetes_join_command.stdout
+
+- name: Copiarlo
+  become: no
+  local_action: copy content="{{ kubernetes_join_command.stdout_lines[0] }}" dest="/tmp/token" mode=0777
+
+- name: Crear .kube
+  become: yes
+  file:
+    path: $HOME/.kube
+    state: directory
+    mode: 0755

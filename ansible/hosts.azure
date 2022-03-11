@@ -1,0 +1,11 @@
+[all:vars]
+ansible_user=ansible
+
+[master]
+10.0.1.10
+
+[workers]
+10.0.1.11
+
+[nfs]
+10.0.1.13

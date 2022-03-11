@@ -1,0 +1,18 @@
+---
+
+# Playbooks para a la instalación de Kubernetes
+  
+# Ejecutar configuraciones comunes a todos los nodos
+- import_playbook: 01-install.yaml
+# Ejecutar configuraciones correspondientes a los nodos NFS
+- import_playbook: 02-nfs.yaml
+# Ejecutar configuraciones comunes a los masters y workers
+- import_playbook: 03-common.yaml
+# Ejecutar configuraciones correspondientes a los nodos Master
+- import_playbook: 04-master.yaml
+# Ejecutar configuraciones de la SDN
+- import_playbook: 05-sdm.yaml
+# Ejecutar configuraciones de ingress
+- import_playbook: 06-ingress.yaml
+# Ejecutar configuraciones correspondientes a los nodos Worker
+- import_playbook: 07-worker.yaml

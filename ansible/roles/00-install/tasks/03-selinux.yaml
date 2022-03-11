@@ -1,0 +1,6 @@
+---
+
+- name: Deshabilitamos SELinux
+  selinux:
+    state: disabled
+  become: yes

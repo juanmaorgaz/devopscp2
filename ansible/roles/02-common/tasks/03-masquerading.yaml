@@ -1,0 +1,17 @@
+---
+
+- name: Habilitamos modprobe br_netfilter
+  modprobe:
+    name: br_netfilter
+    state: present
+  become: yes
+
+- name: Habilitamos el enmascaramiento
+  firewalld: 
+    masquerade: yes 
+    permanent: true 
+    zone: public
+    state: enabled
+
+- name: Reinicio firewall
+  command: firewall-cmd --reload

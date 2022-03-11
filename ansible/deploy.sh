@@ -1,5 +1,7 @@
 #!/bin/bash
 
-# añadir tantas líneas como sean necesarias para el correcto despligue
-ansible-playbook -i hosts -l XXXX playbook
+# Despliegue de Kubernetes
+ansible-playbook -i hosts despliegue-kubernetes.yaml
 
+# Despliegue de la aplicación
+ansible-playbook -i hosts despliegue-aplicacion.yaml

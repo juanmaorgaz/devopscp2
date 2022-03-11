@@ -1,0 +1,5 @@
+---
+
+- name: Configurando timezone Europe/Madrid
+  timezone: 
+   name: Europe/Madrid

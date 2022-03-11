@@ -58,29 +58,17 @@ resource "azurerm_network_security_group" "worker1SecGroup" {
         destination_address_prefix = "*"
     }
 
-    # security_rule {
-    #     name                       = "IN"
-    #     priority                   = 1002
-    #     direction                  = "Inbound"
-    #     access                     = "Allow"
-    #     protocol                   = "Tcp"
-    #     source_port_range          = "*"
-    #     destination_port_range     = "*"
-    #     source_address_prefix      = "10.0.1.0/24"
-    #     destination_address_prefix = "*"
-    # }
-
-    # security_rule {
-    #     name                       = "OUT"
-    #     priority                   = 1003
-    #     direction                  = "outbound"
-    #     access                     = "Allow"
-    #     protocol                   = "Tcp"
-    #     source_port_range          = "*"
-    #     destination_port_range     = "*"
-    #     source_address_prefix      = "10.0.1.0/24"
-    #     destination_address_prefix = "*"
-    # }
+    security_rule {
+        name                       = "IN"
+        priority                   = 1002
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "*"
+        source_address_prefix      = "10.0.1.0/24"
+        destination_address_prefix = "*"
+    }
 
     tags = {
         environment = "UNIR CP2"
@@ -141,4 +129,13 @@ resource "azurerm_linux_virtual_machine" "worker1VM" {
         node        = "WORKER 1"
     }
 
+}
+
+output "public_ip_address_worker1" {
+  description = "Public IP Worker1"
+  value       = azurerm_public_ip.worker1PublicIp.ip_address
+}
+output "network_interface_worker1" {
+  description = "Private ip Worker1"
+  value       = azurerm_network_interface.worker1Nic.private_ip_address
 }

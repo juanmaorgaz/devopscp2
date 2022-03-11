@@ -58,29 +58,17 @@ resource "azurerm_network_security_group" "nfsSecGroup" {
         destination_address_prefix = "*"
     }
 
-    # security_rule {
-    #     name                       = "IN"
-    #     priority                   = 1002
-    #     direction                  = "Inbound"
-    #     access                     = "Allow"
-    #     protocol                   = "Tcp"
-    #     source_port_range          = "*"
-    #     destination_port_range     = "*"
-    #     source_address_prefix      = "10.0.1.0/24"
-    #     destination_address_prefix = "*"
-    # }
-
-    # security_rule {
-    #     name                       = "OUT"
-    #     priority                   = 1003
-    #     direction                  = "outbound"
-    #     access                     = "Allow"
-    #     protocol                   = "Tcp"
-    #     source_port_range          = "*"
-    #     destination_port_range     = "*"
-    #     source_address_prefix      = "10.0.1.0/24"
-    #     destination_address_prefix = "*"
-    # }
+    security_rule {
+        name                       = "IN"
+        priority                   = 1002
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "*"
+        source_address_prefix      = "10.0.1.0/24"
+        destination_address_prefix = "*"
+    }
 
     tags = {
         environment = "UNIR CP2"
@@ -141,4 +129,13 @@ resource "azurerm_linux_virtual_machine" "nfsVM" {
         node        = "NFS"
     }
 
+}
+
+output "public_ip_address_nfs" {
+  description = "Public IP NFS"
+  value       = azurerm_public_ip.nfsPublicIp.ip_address
+}
+output "network_interface_nfs" {
+  description = "Private ip NFS"
+  value       = azurerm_network_interface.nfsNic.private_ip_address
 }

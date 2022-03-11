@@ -1,0 +1,32 @@
+---
+
+- name: Configurar repositorio de Kubernetes
+  yum_repository:
+    name: Kubernetes
+    description: Repositorio oficial de Kubernetes
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    enabled: yes
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    exclude: kubelet kubeadm kubectl
+  become: yes
+
+- name: Instalar Kubernetes
+  dnf:
+    name: "{{ item }}"
+    state: present
+    disable_excludes: Kubernetes
+  become: yes
+  with_items: 
+    - kubelet
+    - kubeadm 
+    - kubectl
+
+- name: Iniciar servicio de Kubernetes
+  systemd:
+    name: kubelet
+    state: started
+    enabled: yes
+    masked: no
+  become: yes

@@ -1,0 +1,8 @@
+---
+
+- name: Inicia nfs-server
+  systemd:
+    name: nfs-server
+    state: started
+    enabled: yes
+    masked: no

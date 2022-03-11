@@ -1,0 +1,7 @@
+---
+
+- include_tasks: 00-update.yaml
+- include_tasks: 01-timezone.yaml
+- include_tasks: 02-chrony.yaml
+- include_tasks: 03-selinux.yaml
+- include_tasks: 04-packages.yaml

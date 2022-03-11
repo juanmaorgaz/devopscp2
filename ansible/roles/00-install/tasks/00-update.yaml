@@ -1,0 +1,7 @@
+---
+
+- name: Actualiza paquetes del Sistema
+  dnf:
+    name: "*"
+    state: latest
+  become: yes

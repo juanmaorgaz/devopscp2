@@ -1,0 +1,10 @@
+---
+
+- name: Deshabilitar SWAP 
+  shell: swapoff -a
+
+- name: Deshabilitar SWAP en fstab 
+  lineinfile:
+    path: /etc/fstab
+    regexp: 'swap'
+    state: absent

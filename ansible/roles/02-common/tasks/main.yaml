@@ -1,0 +1,9 @@
+---
+
+- include_tasks: 00-swap.yaml
+- include_tasks: 01-firewall.yaml
+- include_tasks: 02-reinio.yaml
+- include_tasks: 03-masquerading.yaml
+- include_tasks: 04-traffic.yaml
+- include_tasks: 05-docker.yaml
+- include_tasks: 06-kubernetes.yaml

@@ -1,0 +1,10 @@
+---
+
+- name: 8285/udp
+  command: firewall-cmd --permanent --add-port=8285/udp
+
+- name: 8472/udp
+  command: firewall-cmd --permanent --add-port=8472/udp
+
+- name: Reinicio firewall
+  command: firewall-cmd --reload

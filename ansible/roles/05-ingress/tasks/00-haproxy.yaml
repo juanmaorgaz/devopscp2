@@ -1,0 +1,5 @@
+---
+
+- name: haproxy-controller
+  shell: "kubectl get ns haproxy-controller -o json | jq .status.phase -r"
+  register: ingress_check

@@ -58,29 +58,17 @@ resource "azurerm_network_security_group" "masterSecGroup" {
         destination_address_prefix = "*"
     }
 
-    # security_rule {
-    #     name                       = "IN"
-    #     priority                   = 1002
-    #     direction                  = "Inbound"
-    #     access                     = "Allow"
-    #     protocol                   = "Tcp"
-    #     source_port_range          = "*"
-    #     destination_port_range     = "*"
-    #     source_address_prefix      = "10.0.1.0/24"
-    #     destination_address_prefix = "*"
-    # }
-
-    # security_rule {
-    #     name                       = "OUT"
-    #     priority                   = 1003
-    #     direction                  = "outbound"
-    #     access                     = "Allow"
-    #     protocol                   = "Tcp"
-    #     source_port_range          = "*"
-    #     destination_port_range     = "*"
-    #     source_address_prefix      = "10.0.1.0/24"
-    #     destination_address_prefix = "*"
-    # }
+    security_rule {
+        name                       = "IN"
+        priority                   = 1002
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "*"
+        source_address_prefix      = "10.0.1.0/24"
+        destination_address_prefix = "*"
+    }
 
     tags = {
         environment = "UNIR CP2"
@@ -141,4 +129,13 @@ resource "azurerm_linux_virtual_machine" "masterVM" {
         node        = "MASTER"
     }
 
+}
+
+output "public_ip_address_master" {
+  description = "Public IP Master"
+  value       = azurerm_public_ip.masterPublicIp.ip_address
+}
+output "network_interface_master" {
+  description = "Private ip Master"
+  value       = azurerm_network_interface.masterNic.private_ip_address
 }

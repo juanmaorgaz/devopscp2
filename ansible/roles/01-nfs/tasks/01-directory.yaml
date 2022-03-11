@@ -1,0 +1,6 @@
+---
+
+- name: Creamos el directorio NFS
+  file:
+    path: /srv/nfs
+    state: directory

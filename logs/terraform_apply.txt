@@ -315,6 +315,24 @@ Terraform will perform the following actions:
               + destination_address_prefix                 = "*"
               + destination_address_prefixes               = []
               + destination_application_security_group_ids = []
+              + destination_port_range                     = "*"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "IN"
+              + priority                                   = 1002
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "10.0.1.0/24"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
               + destination_port_range                     = "22"
               + destination_port_ranges                    = []
               + direction                                  = "Inbound"
@@ -347,6 +365,24 @@ Terraform will perform the following actions:
               + destination_address_prefix                 = "*"
               + destination_address_prefixes               = []
               + destination_application_security_group_ids = []
+              + destination_port_range                     = "*"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "IN"
+              + priority                                   = 1002
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "10.0.1.0/24"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
               + destination_port_range                     = "22"
               + destination_port_ranges                    = []
               + direction                                  = "Inbound"
@@ -373,6 +409,24 @@ Terraform will perform the following actions:
       + name                = "worker1_sshtraffic"
       + resource_group_name = "CP2"
       + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "*"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "IN"
+              + priority                                   = 1002
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "10.0.1.0/24"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
           + {
               + access                                     = "Allow"
               + description                                = ""
@@ -606,6 +660,14 @@ Terraform will perform the following actions:
 
 Plan: 19 to add, 0 to change, 0 to destroy.
 
+Changes to Outputs:
+  + network_interface_master  = (known after apply)
+  + network_interface_nfs     = (known after apply)
+  + network_interface_worker1 = (known after apply)
+  + public_ip_address_master  = (known after apply)
+  + public_ip_address_nfs     = (known after apply)
+  + public_ip_address_worker1 = (known after apply)
+
 Do you want to perform these actions?
   Terraform will perform the actions described above.
   Only 'yes' will be accepted to approve.
@@ -613,63 +675,63 @@ Do you want to perform these actions?
   Enter a value: yes
 
 azurerm_resource_group.rg: Creating...
-azurerm_resource_group.rg: Creation complete after 1s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2]
+azurerm_resource_group.rg: Creation complete after 0s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2]
+azurerm_network_security_group.worker1SecGroup: Creating...
+azurerm_storage_account.stAccount: Creating...
+azurerm_network_security_group.nfsSecGroup: Creating...
+azurerm_network_security_group.masterSecGroup: Creating...
+azurerm_public_ip.masterPublicIp: Creating...
+azurerm_public_ip.worker1PublicIp: Creating...
 azurerm_virtual_network.kubernetesnet: Creating...
 azurerm_public_ip.nfsPublicIp: Creating...
-azurerm_network_security_group.worker1SecGroup: Creating...
-azurerm_network_security_group.nfsSecGroup: Creating...
-azurerm_public_ip.masterPublicIp: Creating...
-azurerm_network_security_group.masterSecGroup: Creating...
-azurerm_public_ip.worker1PublicIp: Creating...
-azurerm_storage_account.stAccount: Creating...
-azurerm_public_ip.masterPublicIp: Creation complete after 2s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/master_Public_Ip]
-azurerm_public_ip.worker1PublicIp: Creation complete after 2s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/worker1_Public_Ip]
-azurerm_public_ip.nfsPublicIp: Creation complete after 2s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/nfs_Public_Ip]
+azurerm_public_ip.nfsPublicIp: Creation complete after 3s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/nfs_Public_Ip]
+azurerm_public_ip.worker1PublicIp: Creation complete after 3s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/worker1_Public_Ip]
+azurerm_public_ip.masterPublicIp: Creation complete after 3s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/master_Public_Ip]
 azurerm_network_security_group.masterSecGroup: Creation complete after 5s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/master_sshtraffic]
 azurerm_network_security_group.nfsSecGroup: Creation complete after 5s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/nfs_sshtraffic]
-azurerm_network_security_group.worker1SecGroup: Creation complete after 5s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/worker1_sshtraffic]
-azurerm_virtual_network.kubernetesnet: Creation complete after 5s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net]
+azurerm_network_security_group.worker1SecGroup: Creation complete after 6s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/worker1_sshtraffic]
+azurerm_virtual_network.kubernetesnet: Creation complete after 8s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net]
 azurerm_subnet.kubernetessubnet: Creating...
+azurerm_storage_account.stAccount: Still creating... [10s elapsed]
 azurerm_subnet.kubernetessubnet: Creation complete after 4s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net/subnets/CP2subnet]
 azurerm_network_interface.masterNic: Creating...
 azurerm_network_interface.nfsNic: Creating...
 azurerm_network_interface.worker1Nic: Creating...
-azurerm_storage_account.stAccount: Still creating... [10s elapsed]
-azurerm_network_interface.nfsNic: Creation complete after 5s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/nfs_nic1]
-azurerm_network_interface_security_group_association.nfsSecGroupAssociation: Creating...
-azurerm_network_interface.masterNic: Creation complete after 7s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/master_nic1]
-azurerm_network_interface_security_group_association.masterSecGroupAssociation: Creating...
-azurerm_network_interface_security_group_association.nfsSecGroupAssociation: Creation complete after 2s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/nfs_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/nfs_sshtraffic]
-azurerm_network_interface_security_group_association.masterSecGroupAssociation: Creation complete after 1s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/master_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/master_sshtraffic]
-azurerm_network_interface.worker1Nic: Creation complete after 9s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/worker1_nic1]
+azurerm_network_interface.worker1Nic: Creation complete after 2s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/worker1_nic1]
 azurerm_network_interface_security_group_association.worker1SecGroupAssociation: Creating...
+azurerm_network_interface.masterNic: Creation complete after 3s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/master_nic1]
+azurerm_network_interface_security_group_association.masterSecGroupAssociation: Creating...
 azurerm_network_interface_security_group_association.worker1SecGroupAssociation: Creation complete after 1s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/worker1_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/worker1_sshtraffic]
+azurerm_network_interface_security_group_association.masterSecGroupAssociation: Creation complete after 0s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/master_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/master_sshtraffic]
+azurerm_network_interface.nfsNic: Creation complete after 4s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/nfs_nic1]
+azurerm_network_interface_security_group_association.nfsSecGroupAssociation: Creating...
+azurerm_network_interface_security_group_association.nfsSecGroupAssociation: Creation complete after 0s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/nfs_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/nfs_sshtraffic]
 azurerm_storage_account.stAccount: Still creating... [20s elapsed]
-azurerm_storage_account.stAccount: Creation complete after 22s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Storage/storageAccounts/storageaccountcp2]
+azurerm_storage_account.stAccount: Creation complete after 23s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Storage/storageAccounts/storageaccountcp2]
+azurerm_linux_virtual_machine.masterVM: Creating...
 azurerm_linux_virtual_machine.worker1VM: Creating...
 azurerm_linux_virtual_machine.nfsVM: Creating...
-azurerm_linux_virtual_machine.masterVM: Creating...
-azurerm_linux_virtual_machine.worker1VM: Still creating... [10s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [10s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [10s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [20s elapsed]
+azurerm_linux_virtual_machine.worker1VM: Still creating... [10s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [20s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [20s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [30s elapsed]
+azurerm_linux_virtual_machine.worker1VM: Still creating... [20s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [30s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [30s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [40s elapsed]
+azurerm_linux_virtual_machine.worker1VM: Still creating... [30s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [40s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [40s elapsed]
+azurerm_linux_virtual_machine.worker1VM: Still creating... [40s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [50s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [50s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [50s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [1m0s elapsed]
-azurerm_linux_virtual_machine.nfsVM: Still creating... [1m0s elapsed]
+azurerm_linux_virtual_machine.worker1VM: Still creating... [50s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [1m0s elapsed]
+azurerm_linux_virtual_machine.nfsVM: Still creating... [1m0s elapsed]
+azurerm_linux_virtual_machine.worker1VM: Still creating... [1m0s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [1m10s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [1m10s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [1m10s elapsed]
+azurerm_linux_virtual_machine.worker1VM: Still creating... [1m10s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [1m20s elapsed]
 azurerm_linux_virtual_machine.worker1VM: Still creating... [1m20s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [1m20s elapsed]
@@ -682,12 +744,185 @@ azurerm_linux_virtual_machine.masterVM: Still creating... [1m40s elapsed]
 azurerm_linux_virtual_machine.nfsVM: Still creating... [1m50s elapsed]
 azurerm_linux_virtual_machine.worker1VM: Still creating... [1m50s elapsed]
 azurerm_linux_virtual_machine.masterVM: Still creating... [1m50s elapsed]
-azurerm_linux_virtual_machine.nfsVM: Creation complete after 1m52s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/NFS-vm]
-azurerm_linux_virtual_machine.masterVM: Creation complete after 1m56s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/master-vm]
+azurerm_linux_virtual_machine.nfsVM: Creation complete after 1m53s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/NFS-vm]
+azurerm_linux_virtual_machine.masterVM: Creation complete after 1m58s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/master-vm]
 azurerm_linux_virtual_machine.worker1VM: Still creating... [2m0s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [2m10s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [2m20s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [2m30s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [2m40s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Still creating... [2m50s elapsed]
-azurerm_linux_virtual_machine.worker1VM: Creation complete after 2m54s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/worker1-vm]
+azurerm_linux_virtual_machine.worker1VM: Creation complete after 2m3s [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/worker1-vm]
+
+Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+network_interface_master = "10.0.1.10"
+network_interface_nfs = "10.0.1.13"
+network_interface_worker1 = "10.0.1.11"
+public_ip_address_master = ""
+public_ip_address_nfs = ""
+public_ip_address_worker1 = ""
+ubuntu@PF17J61Q:/mnt/c/datos/UNIR/devopscp2/terraform$ terraform apply
+azurerm_resource_group.rg: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2]
+azurerm_virtual_network.kubernetesnet: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net]
+azurerm_public_ip.masterPublicIp: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/master_Public_Ip]
+azurerm_public_ip.worker1PublicIp: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/worker1_Public_Ip]
+azurerm_storage_account.stAccount: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Storage/storageAccounts/storageaccountcp2]
+azurerm_network_security_group.masterSecGroup: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/master_sshtraffic]
+azurerm_network_security_group.worker1SecGroup: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/worker1_sshtraffic]
+azurerm_network_security_group.nfsSecGroup: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/nfs_sshtraffic]
+azurerm_public_ip.nfsPublicIp: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/nfs_Public_Ip]
+azurerm_subnet.kubernetessubnet: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net/subnets/CP2subnet]
+azurerm_network_interface.worker1Nic: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/worker1_nic1]
+azurerm_network_interface.masterNic: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/master_nic1]
+azurerm_network_interface.nfsNic: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/nfs_nic1]
+azurerm_network_interface_security_group_association.masterSecGroupAssociation: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/master_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/master_sshtraffic]
+azurerm_network_interface_security_group_association.nfsSecGroupAssociation: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/nfs_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/nfs_sshtraffic]
+azurerm_network_interface_security_group_association.worker1SecGroupAssociation: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/worker1_nic1|/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkSecurityGroups/worker1_sshtraffic]
+azurerm_linux_virtual_machine.worker1VM: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/worker1-vm]
+azurerm_linux_virtual_machine.masterVM: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/master-vm]
+azurerm_linux_virtual_machine.nfsVM: Refreshing state... [id=/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/NFS-vm]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # azurerm_network_interface.masterNic has changed
+  ~ resource "azurerm_network_interface" "masterNic" {
+        id                            = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/master_nic1"
+      + mac_address                   = "60-45-BD-89-9D-1F"
+        name                          = "master_nic1"
+        tags                          = {
+            "environment" = "UNIR CP2"
+            "node"        = "MASTER"
+        }
+      + virtual_machine_id            = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/master-vm"
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # azurerm_network_interface.nfsNic has changed
+  ~ resource "azurerm_network_interface" "nfsNic" {
+        id                            = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/nfs_nic1"
+      + mac_address                   = "60-45-BD-89-94-E8"
+        name                          = "nfs_nic1"
+        tags                          = {
+            "environment" = "UNIR CP2"
+            "node"        = "NFS"
+        }
+      + virtual_machine_id            = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/NFS-vm"
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # azurerm_network_interface.worker1Nic has changed
+  ~ resource "azurerm_network_interface" "worker1Nic" {
+        id                            = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/networkInterfaces/worker1_nic1"
+      + mac_address                   = "60-45-BD-89-9F-FD"
+        name                          = "worker1_nic1"
+        tags                          = {
+            "environment" = "UNIR CP2"
+            "node"        = "WORKER 1"
+        }
+      + virtual_machine_id            = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Compute/virtualMachines/worker1-vm"
+        # (9 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+
+  # azurerm_public_ip.masterPublicIp has changed
+  ~ resource "azurerm_public_ip" "masterPublicIp" {
+        id                      = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/master_Public_Ip"
+      + ip_address              = "20.224.134.127"
+        name                    = "master_Public_Ip"
+        tags                    = {
+            "environment" = "UNIR CP2"
+            "node"        = "MASTER"
+        }
+      + zones                   = []
+        # (6 unchanged attributes hidden)
+    }
+
+  # azurerm_public_ip.nfsPublicIp has changed
+  ~ resource "azurerm_public_ip" "nfsPublicIp" {
+        id                      = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/nfs_Public_Ip"
+      + ip_address              = "20.126.59.21"
+        name                    = "nfs_Public_Ip"
+        tags                    = {
+            "environment" = "UNIR CP2"
+            "node"        = "NFS"
+        }
+      + zones                   = []
+        # (6 unchanged attributes hidden)
+    }
+
+  # azurerm_public_ip.worker1PublicIp has changed
+  ~ resource "azurerm_public_ip" "worker1PublicIp" {
+        id                      = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/publicIPAddresses/worker1_Public_Ip"
+      + ip_address              = "20.224.134.8"
+        name                    = "worker1_Public_Ip"
+        tags                    = {
+            "environment" = "UNIR CP2"
+            "node"        = "WORKER 1"
+        }
+      + zones                   = []
+        # (6 unchanged attributes hidden)
+    }
+
+  # azurerm_subnet.kubernetessubnet has changed
+  ~ resource "azurerm_subnet" "kubernetessubnet" {
+        id                                             = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net/subnets/CP2subnet"
+        name                                           = "CP2subnet"
+      + service_endpoint_policy_ids                    = []
+      + service_endpoints                              = []
+        # (6 unchanged attributes hidden)
+    }
+
+  # azurerm_virtual_network.kubernetesnet has changed
+  ~ resource "azurerm_virtual_network" "kubernetesnet" {
+      + dns_servers           = []
+        id                    = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net"
+        name                  = "CP2net"
+      ~ subnet                = [
+          + {
+              + address_prefix = "10.0.1.0/24"
+              + id             = "/subscriptions/e54f65e8-f0a6-4abc-92fc-4ece0d6988af/resourceGroups/CP2/providers/Microsoft.Network/virtualNetworks/CP2net/subnets/CP2subnet"
+              + name           = "CP2subnet"
+              + security_group = ""
+            },
+        ]
+        tags                  = {
+            "environment" = "UNIR CP2"
+        }
+        # (5 unchanged attributes hidden)
+    }
+
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may include actions to undo or
+respond to these changes.
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Changes to Outputs:
+  + public_ip_address_master  = "20.224.134.127"
+  + public_ip_address_nfs     = "20.126.59.21"
+  + public_ip_address_worker1 = "20.224.134.8"
+
+You can apply this plan to save these new output values to the Terraform state, without changing any real infrastructure.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+network_interface_master = "10.0.1.10"
+network_interface_nfs = "10.0.1.13"
+network_interface_worker1 = "10.0.1.11"
+public_ip_address_master = "20.224.134.127"
+public_ip_address_nfs = "20.126.59.21"
+public_ip_address_worker1 = "20.224.134.8"

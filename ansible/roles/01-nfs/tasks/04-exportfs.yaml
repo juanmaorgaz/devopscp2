@@ -1,0 +1,7 @@
+---
+
+- name: exportfs -r
+  command: exportfs -r
+
+- name: exportfs -s
+  command: exportfs -s
