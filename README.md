@@ -7,7 +7,7 @@ Para poder ejecutar el proyecto es necesario hacerlo desde un equipos con Linux 
 
 ## Terraform-Azure
 ### Diagrama de la infraestructura a desplegar:
-![diagrama de red](https://github.com/juanmaorgaz/devopscp2/blob/main/terraform.png?raw=true)
+![Terraform](https://github.com/juanmaorgaz/devopscp2/blob/main/terraform.png?raw=true)
 
 ### Archivos a personalizar
 #### Cambiar el fichero de parámetros de Azure correccion-vars.tf
@@ -49,7 +49,7 @@ variable "ssh_user" {
 ```
 Personalice las variables con sus datos y rutas.
 
-#### Pasos para el Despliegue
+### Pasos para el Despliegue
 - Clonar el proyecto.
 - Editar los archivos según lo indicado en la sección anterior.
 - Realizar el despliegue con Terraform:
@@ -57,3 +57,26 @@ Personalice las variables con sus datos y rutas.
 terraform init
 terraform apply
 ```
+
+## Despliegue con Ansible
+
+### Diagrama de Red
+![Kubernetes](https://github.com/juanmaorgaz/devopscp2/blob/main/cluster.png?raw=true)
+
+### Archivos a personalizar
+#### Archivo hosts
+```
+[all:vars] 
+ansible_user==<<USER>> 
+
+[master] 
+kubemaster.dominio.es ansible_host=<<IP_MASTER>> 
+
+[workers] 
+kubenode1.dominio.es ansible_host=<<IP_WORKER1>> 
+
+[nfs] 
+nfs.dominio.es ansible_host= <<IP_NFS>> 
+```
+
+### Pasos para el Despliegue
