@@ -347,9 +347,11 @@ ok: [kubenode1.juanmaorgaz.es]
 TASK [06-worker : include_tasks] *******************************************************************************************************************************************
 included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/06-worker/tasks/00-firewall.yaml for kubenode1.juanmaorgaz.es
 
-TASK [06-worker : 10250 tcp y 30000-32767 tcp] *****************************************************************************************************************************
-changed: [kubenode1.juanmaorgaz.es] => (item=10250/tcp)
-changed: [kubenode1.juanmaorgaz.es] => (item=30000-32767/tcp)
+TASK [06-worker : Habilitar puerto 10250 tcp] ******************************************************************************************************************************
+ok: [kubenode1.juanmaorgaz.es]
+
+TASK [06-worker : Habilitar puerto 30000-32767 tcp] ******************************************************************************************************************************
+ok: [kubenode1.juanmaorgaz.es]
 
 TASK [06-worker : Reinicio firewall] ***************************************************************************************************************************************
 changed: [kubenode1.juanmaorgaz.es]
@@ -364,7 +366,6 @@ TASK [06-worker : Unir workers] ************************************************
 changed: [kubenode1.juanmaorgaz.es]
 
 PLAY RECAP *****************************************************************************************************************************************************************
-kubemaster.juanmaorgaz.es  : ok=4    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-kubenode1.juanmaorgaz.es   : ok=7    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-
-
+kubemaster.juanmaorgaz.es  : ok=71   changed=17   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+kubenode1.juanmaorgaz.es   : ok=49   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+nfs.juanmaorgaz.es         : ok=33   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

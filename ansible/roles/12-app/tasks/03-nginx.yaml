@@ -1,0 +1,4 @@
+---
+
+- name: Despliegue de NGINX (pods y service)
+  shell: "kubectl apply -f $HOME/nginx.yaml"

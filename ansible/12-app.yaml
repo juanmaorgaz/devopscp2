@@ -1,0 +1,7 @@
+---
+
+- name: Desplegar APP
+  hosts: master
+  become: true
+  roles:
+    - 12-app

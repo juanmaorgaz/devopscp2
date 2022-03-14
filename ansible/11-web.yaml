@@ -1,0 +1,7 @@
+---
+
+- name: copiar Web
+  hosts: nfs
+  become: true
+  roles:
+    - 11-web

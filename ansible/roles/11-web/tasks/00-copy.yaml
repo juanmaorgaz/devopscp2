@@ -1,0 +1,9 @@
+---
+
+- name: Copiar los archivos de la web
+  copy:
+    src: "{{ item }}"
+    dest: "/srv/nfs/{{ item }}"
+    mode: '0644'
+  with_items:
+    - 'index.html'

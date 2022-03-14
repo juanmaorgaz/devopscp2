@@ -1,0 +1,7 @@
+---
+
+- name: Crear PersistentVolume
+  shell: "kubectl apply -f $HOME/pv.yaml"
+
+- name: Crear PersistentVolumeClain
+  shell: "kubectl apply -f $HOME/pvc.yaml"

@@ -1,0 +1,5 @@
+---
+
+- name: Crear Namespace
+  shell: "kubectl apply -f $HOME/namespace.yaml"
+  # register: kubectl_apply_app

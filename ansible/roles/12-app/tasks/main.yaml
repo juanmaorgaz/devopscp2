@@ -1,0 +1,6 @@
+---
+
+- include_tasks: 00-copy.yaml
+- include_tasks: 01-namespace.yaml
+- include_tasks: 02-pv.yaml
+- include_tasks: 03-nginx.yaml

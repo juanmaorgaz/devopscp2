@@ -1,1 +1,154 @@
+ubuntu@PF17J61Q:/mnt/c/datos/UNIR/devopscp2/ansible$ ansible-playbook -i hosts.azure 00-despliegue-aplicacion.yaml
 
+PLAY [copiar Web] **********************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [11-web : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/11-web/tasks/00-copy.yaml for nfs.juanmaorgaz.es
+
+TASK [11-web : Copiar los archivos de la web] ******************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es] => (item=index.html)
+
+PLAY [Desplegar APP] *******************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/00-copy.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Copiar los archivos Deployment] *****************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es] => (item=namespace.yaml)
+ok: [kubemaster.juanmaorgaz.es] => (item=pv.yaml)
+ok: [kubemaster.juanmaorgaz.es] => (item=pvc.yaml)
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/01-namespace.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear Namespace] ********************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/02-pv.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear PersistentVolume] *************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : Crear PersistentVolumeClain] ********************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/03-nginx.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear PersistentVolume] *************************************************************************************************************************************
+fatal: [kubemaster.juanmaorgaz.es]: FAILED! => {"changed": true, "cmd": "kubectl apply -f $HOME/nginx.yaml", "delta": "0:00:00.354982", "end": "2022-03-14 13:14:00.765157", "msg": "non-zero return code", "rc": 1, "start": "2022-03-14 13:14:00.410175", "stderr": "error: the path \"/root/nginx.yaml\" does not exist", "stderr_lines": ["error: the path \"/root/nginx.yaml\" does not exist"], "stdout": "", "stdout_lines": []}
+
+PLAY RECAP *****************************************************************************************************************************************************************
+kubemaster.juanmaorgaz.es  : ok=9    changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+nfs.juanmaorgaz.es         : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+ubuntu@PF17J61Q:/mnt/c/datos/UNIR/devopscp2/ansible$ ansible-playbook -i hosts.azure 00-despliegue-aplicacion.yaml
+
+PLAY [copiar Web] **********************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [11-web : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/11-web/tasks/00-copy.yaml for nfs.juanmaorgaz.es
+
+TASK [11-web : Copiar los archivos de la web] ******************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es] => (item=index.html)
+
+PLAY [Desplegar APP] *******************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/00-copy.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Copiar los archivos Deployment] *****************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es] => (item=namespace.yaml)
+ok: [kubemaster.juanmaorgaz.es] => (item=pv.yaml)
+ok: [kubemaster.juanmaorgaz.es] => (item=pvc.yaml)
+changed: [kubemaster.juanmaorgaz.es] => (item=nginx.yaml)
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/01-namespace.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear Namespace] ********************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/02-pv.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear PersistentVolume] *************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : Crear PersistentVolumeClain] ********************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/03-nginx.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear PersistentVolume] *************************************************************************************************************************************
+fatal: [kubemaster.juanmaorgaz.es]: FAILED! => {"changed": true, "cmd": "kubectl apply -f $HOME/nginx.yaml", "delta": "0:00:04.023746", "end": "2022-03-14 13:15:52.954809", "msg": "non-zero return code", "rc": 1, "start": "2022-03-14 13:15:48.931063", "stderr": "Error from server (NotFound): error when creating \"/root/nginx.yaml\": namespaces \"web\" not found\nError from server (NotFound): error when creating \"/root/nginx.yaml\": namespaces \"web\" not found", "stderr_lines": ["Error from server (NotFound): error when creating \"/root/nginx.yaml\": namespaces \"web\" not found", "Error from server (NotFound): error when creating \"/root/nginx.yaml\": namespaces \"web\" not found"], "stdout": "", "stdout_lines": []}
+
+PLAY RECAP *****************************************************************************************************************************************************************
+kubemaster.juanmaorgaz.es  : ok=9    changed=4    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+nfs.juanmaorgaz.es         : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+ubuntu@PF17J61Q:/mnt/c/datos/UNIR/devopscp2/ansible$ ansible-playbook -i hosts.azure 00-despliegue-aplicacion.yaml
+
+PLAY [copiar Web] **********************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es]
+
+TASK [11-web : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/11-web/tasks/00-copy.yaml for nfs.juanmaorgaz.es
+
+TASK [11-web : Copiar los archivos de la web] ******************************************************************************************************************************
+ok: [nfs.juanmaorgaz.es] => (item=index.html)
+
+PLAY [Desplegar APP] *******************************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/00-copy.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Copiar los archivos Deployment] *****************************************************************************************************************************
+ok: [kubemaster.juanmaorgaz.es] => (item=namespace.yaml)
+ok: [kubemaster.juanmaorgaz.es] => (item=pv.yaml)
+ok: [kubemaster.juanmaorgaz.es] => (item=pvc.yaml)
+changed: [kubemaster.juanmaorgaz.es] => (item=nginx.yaml)
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/01-namespace.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear Namespace] ********************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/02-pv.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Crear PersistentVolume] *************************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : Crear PersistentVolumeClain] ********************************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+TASK [12-app : include_tasks] **********************************************************************************************************************************************
+included: /mnt/c/datos/UNIR/devopscp2/ansible/roles/12-app/tasks/03-nginx.yaml for kubemaster.juanmaorgaz.es
+
+TASK [12-app : Despliegue de NGINX (pods y service)] ***********************************************************************************************************************
+changed: [kubemaster.juanmaorgaz.es]
+
+PLAY RECAP *****************************************************************************************************************************************************************
+kubemaster.juanmaorgaz.es  : ok=10   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+nfs.juanmaorgaz.es         : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

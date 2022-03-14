@@ -1,10 +1,18 @@
 ---
 
-- name: 10250 tcp y 30000-32767 tcp
-  command: firewall-cmd --zone=public --permanent --add-port={{ item }}
-  with_items:
-    - 10250/tcp
-    - 30000-32767/tcp
+- name: Habilitar puerto 10250 tcp
+  firewalld:
+    port: 10250/tcp
+    permanent: true
+    state: enabled
+  become: yes
+
+- name: Habilitar puerto 30000-32767 tcp
+  firewalld:
+    port: 30000-32767/tcp
+    permanent: true
+    state: enabled
+  become: yes
 
 - name: Reinicio firewall
   command: firewall-cmd --reload

@@ -1,0 +1,45 @@
+---    
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-nginx
+  namespace: nginx
+spec:
+  selector:
+    matchLabels:
+      run: nginx
+  replicas: 3 # indica al controlador que ejecute x pods
+  template:
+    metadata:
+      labels:
+        run: nginx
+    spec:
+      volumes:
+      - name: nginx-pv-storage
+        persistentVolumeClaim:
+          claimName: nfs-pvc
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: nginx-pv-storage
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: serv-nginx
+  namespace: nginx
+  labels:
+    run: nginx
+spec:
+  ports:
+  - port: 30080
+    targetPort: 80
+    protocol: TCP
+  selector:
+    run: nginx
+  type: NodePort

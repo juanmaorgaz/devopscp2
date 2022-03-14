@@ -1,0 +1,8 @@
+---
+
+# Playbooks para a la instalación de la aplicación
+  
+# Copiar Web a NFS
+- import_playbook: 11-web.yaml
+# Desplegar NGINX
+- import_playbook: 12-app.yaml

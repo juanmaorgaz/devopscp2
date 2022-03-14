@@ -1,0 +1,12 @@
+---
+
+- name: Copiar los archivos Deployment
+  copy:
+    src: "{{ item }}"
+    dest: "$HOME/{{ item }}"
+    mode: '0644'
+  with_items:
+    - 'namespace.yaml'
+    - 'pv.yaml'
+    - 'pvc.yaml'
+    - 'nginx.yaml'
