@@ -51,7 +51,8 @@ Personalice las variables con sus datos y rutas.
 
 ### Pasos para el Despliegue
 - Clonar el proyecto.
-- Editar los archivos según lo indicado en la sección anterior.
+- Entrar a la carpeta ansible `cd terraform`
+- Editar los archivos según lo indicado anteriormente.
 - Realizar el despliegue con Terraform:
 ```bash
 terraform init
@@ -80,3 +81,16 @@ nfs.dominio.es ansible_host= <<IP_NFS>>
 ```
 
 ### Pasos para el Despliegue
+- Clonar el proyecto.
+- Entrar a la carpeta ansible `cd ansible`
+- Editar los archivos según lo indicado anteriormente.
+- Para los hosts master, workers y nfs, el usuario a usar debe estar configurado para realizar el escalado de privilegios y con las llaves de autenticación ssh.
+- Lanzar ambos playbooks ejecutando el archivo bash **deploy.sh**
+-- **(Opcional)** Ejecutar el playbook de despliegue de Kubernetes:
+```bash
+ansible-playbook -i hosts 00-despliegue-kubernetes.yaml
+```
+-- **(Opcional)** Ejecutar el playbook de despliegue de las aplicaciones de ejemplo:
+```bash
+ansible-playbook -i hosts 00-despliegue-aplicacion.yaml
+```
