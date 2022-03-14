@@ -7,7 +7,7 @@ Para poder ejecutar el proyecto es necesario hacerlo desde un equipos con Linux 
 
 ## Terraform-Azure
 ### Diagrama de la infraestructura a desplegar:
-![diagrama de red](https://github.com/juanmaorgaz/devopscp2/blob/main/diagrama_de_red.jpg?raw=true)
+![diagrama de red](https://github.com/juanmaorgaz/devopscp2/blob/main/terraform.png?raw=true)
 
 ### Archivos a personalizar
 #### Archivo **setup.tf**
