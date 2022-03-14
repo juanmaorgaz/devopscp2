@@ -13,7 +13,7 @@ variable "storage_account" {
 variable "public_key_path" {
   type = string
   description = "Ruta para la clave pública de acceso a las instancias"
-  default = "~/.ssh/id_rsa.pub"
+  default = "~/.ssh/id_rsa.pub" # o la ruta correspondiente de la clave ssh
 }
 
 variable "ssh_user" {
