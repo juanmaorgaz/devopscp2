@@ -1,11 +1,11 @@
 [all:vars] 
-ansible_user=ansible 
+ansible_user==<<USER>> 
 
 [master] 
-10.0.1.10 
+kubemaster.dominio.es ansible_host=<<IP_MASTER>> 
 
 [workers] 
-10.0.1.11 
+kubenode1.dominio.es ansible_host=<<IP_WORKER1>> 
 
 [nfs] 
-10.0.1.13 
+nfs.dominio.es ansible_host= <<IP_NFS>> 
