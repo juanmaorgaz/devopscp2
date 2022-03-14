@@ -79,18 +79,22 @@ kubenode1.dominio.es ansible_host=<<IP_WORKER1>>
 [nfs] 
 nfs.dominio.es ansible_host= <<IP_NFS>> 
 ```
+Personalice los datos:
+- Variable **ansible_user**: Usuario Linux con el cual Ansible se conectará a los servidores master, workers y nfs.
+- Variable **kubexxx.dominio.es**: Nombre de cada uno de los servidores master, workers y nfs.
+- Variables **ansible_host=**: IPs para conectar a los servidores master, workers y nfs.
 
 ### Pasos para el Despliegue
 - Clonar el proyecto.
 - Entrar a la carpeta ansible `cd ansible`
 - Editar los archivos según lo indicado anteriormente.
-- Para los hosts master, workers y nfs, el usuario a usar debe estar configurado para realizar el escalado de privilegios y con las llaves de autenticación ssh.
+- Para los hosts (master, workers y nfs), el usuario a usar debe estar configurado para realizar el escalado de privilegios y con las llaves de autenticación ssh.
 - Lanzar ambos playbooks ejecutando el archivo bash **deploy.sh**
--- **(Opcional)** Ejecutar el playbook de despliegue de Kubernetes:
+-- **(Opcional)** Ejecutar por separado el playbook de despliegue de Kubernetes:
 ```bash
 ansible-playbook -i hosts 00-despliegue-kubernetes.yaml
 ```
--- **(Opcional)** Ejecutar el playbook de despliegue de las aplicaciones de ejemplo:
+-- **(Opcional)** Ejecutar por separado el playbook de despliegue de las aplicaciones de ejemplo:
 ```bash
 ansible-playbook -i hosts 00-despliegue-aplicacion.yaml
 ```
