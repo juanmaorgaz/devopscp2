@@ -10,7 +10,7 @@ Para poder ejecutar el proyecto es necesario hacerlo desde un equipos con Linux 
 ![Terraform](https://github.com/juanmaorgaz/devopscp2/blob/main/terraform.png?raw=true)
 
 ### Archivos a personalizar
-#### Cambiar el fichero de parámetros de Azure correccion-vars.tf
+#### Cambiar el fichero de parámetros de Azure credentials.tf
 ```
 provider "azurerm" { 
   features {} 
@@ -24,7 +24,7 @@ Personalice los datos:
 - **subscription_id**: Id de subscripción de MS Azure.
 - **client_id**, **client_secret** y **tenant_id**: Estos valores se obtienen al crear el Service Principal en MS Azure.
 
-#### Cambiar el fichero de variables credentials.tf
+#### Cambiar el fichero de variables correccion-vars.tf 
 ```
 variable "location" {
   type = string
