@@ -24,7 +24,7 @@ Personalice los datos:
 - **subscription_id**: Id de subscripción de MS Azure.
 - **client_id**, **client_secret** y **tenant_id**: Estos valores se obtienen al crear el Service Principal en MS Azure.
 
-#### Cambiar el fichero de variables correccion-vars.tf
+#### Cambiar el fichero de variables credentials.tf
 ```
 variable "location" {
   type = string
